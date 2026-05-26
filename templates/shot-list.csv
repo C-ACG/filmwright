@@ -1,0 +1,6 @@
+shot_id,scene,size,angle,movement,lens_focus,subject_action,dialogue_cue,light_intent,sound_cue,duration_s,transition_out,notes
+SC04-01,4,WS,eye,static,wide/deep,"The two at the table, cold room around them",,"motivated window, low fill",room tone,4,cut,establish geography; negative space = distance
+SC04-02,4,OTS,eye,static,normal/shallow,"Over his shoulder onto her; she turns the cup","你今天…比平时安静。",window soft,,5,cut,her screen-right; hold the line
+SC04-03,4,MCU,eye,static,normal/shallow,"Her alone, choosing the words","我下周走。",window soft,room tone,3,cut,the turn is in SC04-04 not here
+SC04-04,4,CU-ECU,eye,slow dolly-in,long/shallow,"Him; the line lands; thumb stops on the glass",(silent),key drops a stop,SILENCE,6,L-cut,push on the realization; the reaction carries it
+SC04-05,4,Insert,top,static,normal/deep,"His still hand on the glass; hers leaves frame",,tabletop practical,next-scene audio under,3,J-cut,sound of next scene bleeds in over the held hand
