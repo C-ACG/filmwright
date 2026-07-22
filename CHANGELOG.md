@@ -8,8 +8,8 @@ All notable changes to Filmwright are documented here. The project follows
 
 ### Changed
 
-- Split the mixed-language README into dedicated English and Simplified Chinese
-  editions with a top-level language switch.
+- Split the mixed-language README into a Chinese default edition and a dedicated
+  English edition, with a top-level language switch in both files.
 
 ## [0.2.0] - 2026-07-21
 
