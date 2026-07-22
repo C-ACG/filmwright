@@ -6,6 +6,11 @@ All notable changes to Filmwright are documented here. The project follows
 
 ## [Unreleased]
 
+### Changed
+
+- Split the mixed-language README into dedicated English and Simplified Chinese
+  editions with a top-level language switch.
+
 ## [0.2.0] - 2026-07-21
 
 ### Added
