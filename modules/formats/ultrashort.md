@@ -1,7 +1,8 @@
 # Format · Concept Ultrashort · 概念超短片（1–3 分钟）
 
 > Pure idea delivery. The weapon is not story — it is the sharpness of the concept
-> and the punch of the audiovisual language. Loads `00` + `01`.
+> and the punch of the audiovisual language. Minimum format dependency: `00`;
+> task routes add development/structure only when the requested stage needs them.
 
 ## Traits
 Runtime 1–3 min · characters are functional archetypes (or none) · usually no arc

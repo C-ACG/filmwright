@@ -19,10 +19,8 @@
 Title: The Last Shift
 Credit: written by
 Author: <name or pen-name>
-Draft date: 2026-05-26
+Draft date: <YYYY-MM-DD>
 Contact: <repo or email>
-
-====
 
 INT. CONVENIENCE STORE - NIGHT
 
@@ -31,6 +29,10 @@ Action is plain paragraphs — only what the camera sees and the mic hears.
 
 CHARACTER NAME
 A character cue is an uppercase line. Dialogue follows on the next line(s).
+
+@美玲
+Prefix a non-Roman character cue with `@` so Fountain parsers recognize it.
+The `@` is not printed in the rendered screenplay.
 
 CHARACTER NAME
 (parenthetical — sparing; only when it changes the line's meaning)
@@ -42,23 +44,26 @@ Off-screen. (V.O.) for voice-over. (CONT'D) handled by tools.
 A line ending in TO: is a transition >  e.g.   CUT TO:
 Force a transition by prefixing >   > SMASH CUT TO:
 Force a scene heading with a leading .   .ROOFTOP - MOMENTS LATER
+For a fully Chinese slugline, force it:   .内景 便利店 - 夜
 Center text with > <   > THE END <
 ```
 
 ## Conventions for this system · 本系统约定
 
-- **Action is shootable.** No interior narration, no "(he secretly...)" — see the
-  red lines (`orchestrator.md` §1.1).
+- **Action is shootable.** No accidental interior narration or “(he secretly...)”.
+  Intentional VO/subjective devices are allowed when the format chooses them and
+  they have an audiovisual function.
 - **First appearance** of a character gets a one-to-two-line physical/identity
   sketch in the action.
 - **Sparing parentheticals.** Only when tone/gesture changes meaning; never to
   explain the inner life.
 - **Transitions are thoughts** — use them where they make a point, not as filler
   (`direction/blocking-and-coverage.md` §4).
-- **Camera/coverage stays out of the script.** Shot sizes, angles, and movement
+- **Camera/coverage normally stays out of the script.** Shot sizes, angles, and movement
   live in the **shot list** (`shot-list.md`), produced at stage 7d — the director's
-  layer, not the writer's page. (Micro-drama is the exception: a lightweight clip
-  note may sit inline.)
+  layer, not the writer's page. Concept ultrashorts, micro-drama, and an explicitly
+  requested AV script may integrate essential camera/form instructions because the
+  device itself is content.
 
 ## Worked excerpt · 范例片段
 
@@ -89,7 +94,20 @@ She sets the can down. Carefully, like it might break.
 CUT TO:
 ```
 
+Chinese cue/slugline example:
+
+```fountain
+.内景 便利店 - 夜
+
+@美玲
+还有十分钟。
+
+@凯
+我不进去。
+```
+
 ## Export · 导出
 - `.fountain` / `.txt` → Highland 2, Slugline, Fade In, WriterDuet (all import).
 - → PDF / `.fdx` via the above, or the `afterwriting` CLI (`npm i -g afterwriting`).
 - For platform-specific micro-drama formats, see `vertical-microdrama.md` §14.
+- Syntax reference: [Fountain official syntax](https://fountain.io/syntax/).

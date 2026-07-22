@@ -6,15 +6,26 @@
 > applies; this module adds the genre's specialized engine.
 > 短剧只是诸多格式之一；它在通用编剧内核之上叠加情绪工程引擎。
 
-> **Output discipline note.** Unlike the cinematic formats, micro-drama **batches**
-> output (it does not gate every stage) and folds a lightweight per-clip shot note
-> into the script itself rather than producing a separate shot list (`direction/
-> shot-breakdown.md` §5). Speed is the product.
+> **Output discipline note.** Micro-drama **batches** output (it does not gate every
+> stage). Live-action delivery normally folds a lightweight per-clip shot note into
+> the script instead of a separate shot list. For AI generation, that same note is
+> the authoring view but must be normalized to the canonical shot-row fields before
+> creating generation packets; the CSV may stay an intermediate. Speed is the
+> product, but production has one unambiguous contract.
+
+> **Platform note (v0.2).** Timing, word-count, monetization, and compliance numbers
+> below are Filmwright house defaults/creative heuristics—not claims about a
+> platform's current official rules. For a real commission, verify a dated platform
+> pack from official sources using `modules/platforms/platform-pack-template.md`;
+> that pack overrides these defaults.
 
 ---
 
 ## §1. Root cognition · 根认知
-3 秒不抓人就划走，30 秒没爽点就弃剧，1 分钟没反转就不回来。Therefore: every page
+Working attention hypothesis: establish a question within ~3 seconds, create an
+effective release/escalation within ~30 seconds, and change direction within roughly
+one minute. Tune with actual project analytics; do not present these as universal
+viewer law. Therefore: every page
 has someone winning or losing (no "chatting"); every line is a knife, hook, or
 bomb; every scene ends making the viewer want the next; pause at any second and
 the viewer must *need* to know what happens next. **Adaptation ≠ porting** — keep
@@ -22,7 +33,7 @@ and intensify the source's payoffs/lines/set-pieces; compress everything that dr
 into one action or one line.
 
 ## §2. Parameters · 参数锁定
-platform (Douyin / Hongguo / other) · aspect (9:16 default / 16:9) · production
+platform + region + dated pack (if available) · aspect (9:16 default / 16:9) · production
 form (live-action / 2D / 3D / AI-gen) · genre lane · target total runtime · total
 episodes · clips/episode (6–8 std, 9–12 long) · per-episode runtime · output tier
 (Lite / Standard / Studio). Episode estimate (three-track): effective conflict
@@ -101,8 +112,9 @@ payoff not before EP04. Cover ≥3 of the six classes per 3 episodes. No three c
 episodes in a row. Watch prop fatigue (DNA report / recording / black card / token).
 
 ## §7. Dialogue rules · 台词军规
-Regular line ≤12 字; golden line ≤14 字 (1–2/episode); per-clip total by platform
-(Douyin 25–45, Hongguo 40–60); ≤4 dialogue rounds; VO ≤3/season (EP01 ≤2, ≤15
+House pacing defaults: regular line ≤12 字; golden line ≤14 字 (1–2/episode);
+per-clip total 25–60 字 unless an actor read or dated platform pack changes it; ≤4
+dialogue rounds; VO ≤3/season (EP01 ≤2, ≤15
 字/line, only for time-jump or system prompt — never for backstory). **Golden first
 line** instantly states who a character is. Sentence weapons: knife / hook / bomb
 (calmest tone + most violent content) / reversal / definition / unfinished. Replace
@@ -147,8 +159,9 @@ or ≤3 (long), each causally tied to the main line and merging at a node. Paywa
 node usually EP03–05: identity about to surface but not / biggest slap imminent but
 not / relationship about to flip but not.
 
-## §11. Four ledgers · 四账本（信息管理）
-Who knows what, when it detonates. Track and update on every revision:
+## §11. Four ledger views · 四账本视图（信息管理）
+Who knows what, when it detonates. Store canonical facts in Project State; refresh
+these task-focused views on every revision:
 - **Character** — name｜function｜surface id｜true id｜goal｜hidden motive｜tension｜
   voice｜crack｜growth nodes｜exit.
 - **Information** — name｜known｜unknown｜hidden from whom｜audience-first?｜reveal ep｜
@@ -156,18 +169,23 @@ Who knows what, when it detonates. Track and update on every revision:
 - **Causality** — seed ep｜seed event｜ferment｜result ep｜result event｜affects whom.
 - **Prop** — name｜first seen｜state｜holder｜function｜next trigger ep｜final state.
 
-## §12. Compliance rail · 合规护栏
-Compliance is not castration — it is a higher-grade way to land the payoff; the best
-crush comes from *gap and precision*, not crudeness. **R3 hard-banned:** graphic
-gore · sexual/lewd detail · minors in violence/romance/horror · political
-sensitivity · glamorizing feudal dross · religious distortion · glamorizing crime.
-**R2 (substitute):** e.g. a public slap → hand raised → cut to a shocked bystander →
-cut to a hand on a cheek (imply, don't show); "vomits blood" → a thread of blood +
-a stagger + a knee to the floor; forced/abusive relationship written as romance →
-mutual choice with respect. Values four-questions: does the win rely only on
-money/power? is the villain bad only by label? is control/coercion romanticized? is
-a positive value-anchor preserved after the payoff? Keep one value-anchor per 5
-episodes (woven into payoffs, not its own clip).
+## §12. Safety, rating & platform rail · 安全、分级与平台护栏
+
+Use host safety, applicable law, the Project Card's audience/rating, and the current
+dated platform pack. Do not turn culturally vague or obsolete platform language
+into a universal creative rule.
+
+Risk-map each project for: minors; sexual/intimate content; violence/gore;
+self-harm; hate/harassment; dangerous/criminal instruction; weapons/stunts/vehicles/
+animals; coercive relationships; living-person likeness/claims; copyright/brand;
+and region/platform-specific restrictions. Escalate uncertainty instead of
+pretending clearance.
+
+Safer depiction can be more precise: a public strike → raised hand, reaction, then
+aftermath; graphic injury → balance loss, breath, prop, and consequence; coercive
+control framed as romance → make harm legible and preserve agency. Ask four value
+questions: does the win rely only on money/power? is the antagonist bad only by
+label? is coercion romanticized? does the story preserve a positive value anchor?
 
 ## §13. Production adaptation · 成片形态适配
 | Form | Image | Dialogue | Action/space |
@@ -175,12 +193,12 @@ episodes (woven into payoffs, not its own clip).
 | **Live-action** | actable, blockable, continuous; write the *result* of spectacle, don't lean on FX | spoken, natural, biggest subtext space | strict physical logic; violence/intimacy via implication |
 | **2D** | exaggerated expression, symbolic action; solid/gradient backgrounds for emotion | sharpest, most slogan-like; high golden-line density | payoffs via pose + expression + prop reveal; text FX as amplifier |
 | **3D** | spatial depth, light layers, position = power; step-in/pause as pressure | slightly slower, more silence allowed | room to move; control scene complexity; particle/shatter as amplifier |
-| **AI-gen** | the per-clip shot note (`size + angle + movement + light + concrete action`) doubles as a generation prompt; keep action concrete, metaphor-free | — | name a visual tag-object per character; type-sketch the extras |
+| **AI-gen** | embedded clip note → canonical shot row → `production/ai-video.md` packet | normalized 13-field row is required for production, even when CSV is not delivered | asset IDs, endpoint continuity, concrete actions, verified adapter |
 
 Production economy: ≤5 recurring locations/season; reuse an EP01 location within 3
 episodes; one-time full appearance description per character + a visual tag-object.
 
-## §14. Output · 输出（NEW · Studio, 3 batches）
+## §14. Output · 输出（Studio, 3 batches）
 1. params + adaptability + adaptation-decision summary → **wait for confirm**.
 2. project anchor + four ledgers + season episode plan + EP01 emotion design + EP01
    full script (Fountain or the platform's standard format) → continue.
@@ -194,7 +212,8 @@ locks consistent with the handoff.
 ## §15. Self-check (hard items) · 集级自检
 3s hook · 15s side-taking · first positive ≤C02 (≥+2) · main Blast ≤C04 · main payoff
 has A/B · ≥1 aux release · press ≤2 consecutive clips · press ≤30% · peak ≥+4 ·
-end +2..+4 · no tepid/explaining lines · no interior narration · ≥1 irreversible
+end +2..+4 · no tepid/explaining lines · no accidental interior narration (only
+intentional VO within the declared limit) · ≥1 irreversible
 main-line event · concrete imagery · dual-track tag per scene. Report only
 `[⚠ failed]` and `[waiver]` items; if all pass, write "self-check passed."
 

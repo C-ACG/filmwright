@@ -1,9 +1,0 @@
-shot_id,scene,size,angle,movement,lens_focus,subject_action,dialogue_cue,light_intent,sound_cue,duration_s,transition_out,notes
-SC04-01,4,WS,eye,static,wide/deep,"Meiling small in frame wiping a clean counter; the half-open door and the steaming bowl on the sill; rain on glass behind",,"fluorescent flat top-light, cold; practical from the cooler",room tone + rain,5,cut,establish geography and the ritual; negative space around her = isolation
-SC04-02,4,Insert,top,static,normal/deep,"The paper bowl on the sill, steam thinning",,cooler practical,kettle tick,3,cut,plant the second portion as an object before it matters
-SC04-03,4,MS,low,static,normal/deep,"Kai fills the doorway, doesn't enter, reading the new sign",要关了。,"backlit by street; he is a silhouette",rain louder off the open door,4,cut,low angle gives the absent father weight; backlight keeps him unresolved
-SC04-04,4,MCU,eye,static,normal/shallow,"Meiling rinsing the cloth, not turning",下周。,key soft on her face,radio distant,4,cut,keep her screen-left; hold the 180 line
-SC04-05,4,MCU,eye,static,normal/shallow,"Kai, the question he can barely ask",你妈……,backlit,—,3,cut,reverse; eyeline matches
-SC04-06,4,CU,eye,static,normal/shallow,"Her hand and the cloth — the cloth stops",她去年走的。,key soft,kettle tick into silence,3,cut,the body answers before the face does
-SC04-07,4,CU to ECU,eye,slow dolly-in,long/shallow,"Meiling. The name lands. She does not turn. Her thumb stops on the counter edge",美玲。(O.S.),key drops a stop,SILENCE,7,hold,THE TURN — the only camera move and the only silence in the scene; the listener carries it
-SC04-08,4,Insert,top,static,normal/deep,"Her hand setting the cloth down, careful, like it might break",,cooler practical,next-scene audio under,4,J-cut,recognition rendered as an object; next scene bleeds in over the held hand

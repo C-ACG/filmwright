@@ -1,0 +1,153 @@
+{
+  "$schema": "filmwright.manifest/v1",
+  "version": "0.2.0",
+  "entry_contract": "system/entry-contract.md",
+  "creative_entry": "system/orchestrator.md",
+  "pipeline": "system/pipeline.md",
+  "canonical_state_template": "templates/project-state.md",
+  "canonical_schemas": {
+    "shot_list": "schemas/shot-list.schema.json"
+  },
+  "module_metadata_semantics": {
+    "depends_on": "minimum load-time prerequisites; resolve transitively, but never replay their creative stages",
+    "stage": "routing selectors where the module applies; numeric values are pipeline stages and named values are mode or deliverable triggers"
+  },
+  "modules": [
+    {
+      "id": "core-craft",
+      "version": "0.2.0",
+      "path": "modules/00-core-craft.md",
+      "stage": ["all"],
+      "depends_on": [],
+      "scope": "universal story craft, state, scene contract"
+    },
+    {
+      "id": "development",
+      "version": "0.2.0",
+      "path": "modules/01-development.md",
+      "stage": ["1", "2", "3", "4"],
+      "depends_on": ["core-craft"],
+      "scope": "premise, character, relationship, world"
+    },
+    {
+      "id": "structure",
+      "version": "0.2.0",
+      "path": "modules/02-structure.md",
+      "stage": ["5", "6"],
+      "depends_on": ["core-craft"],
+      "scope": "beat structures, pacing, setups/payoffs"
+    },
+    {
+      "id": "adaptation-research",
+      "version": "0.2.0",
+      "path": "modules/03-adaptation-research.md",
+      "stage": ["0", "1", "2", "3", "4", "5", "6", "7", "7d", "8"],
+      "depends_on": ["core-craft"],
+      "scope": "source fidelity, provenance, factual research"
+    },
+    {
+      "id": "format-ultrashort",
+      "version": "0.2.0",
+      "path": "modules/formats/ultrashort.md",
+      "stage": ["0", "1", "2", "3", "4", "5", "6", "7", "7d", "8", "review", "final", "high-stakes"],
+      "depends_on": ["core-craft"],
+      "scope": "1–3 minute concept films"
+    },
+    {
+      "id": "format-short",
+      "version": "0.2.0",
+      "path": "modules/formats/short.md",
+      "stage": ["0", "1", "2", "3", "4", "5", "6", "7", "7d", "8", "review", "final", "high-stakes"],
+      "depends_on": ["core-craft"],
+      "scope": "short films"
+    },
+    {
+      "id": "format-feature",
+      "version": "0.2.0",
+      "path": "modules/formats/feature.md",
+      "stage": ["0", "1", "2", "3", "4", "5", "6", "7", "7d", "8", "review", "final", "high-stakes"],
+      "depends_on": ["core-craft"],
+      "scope": "feature films"
+    },
+    {
+      "id": "format-series",
+      "version": "0.2.0",
+      "path": "modules/formats/series.md",
+      "stage": ["0", "1", "2", "3", "4", "5", "6", "7", "7d", "8", "review", "final", "high-stakes"],
+      "depends_on": ["core-craft"],
+      "scope": "episodic and season planning"
+    },
+    {
+      "id": "format-vertical-microdrama",
+      "version": "0.2.0",
+      "path": "modules/formats/vertical-microdrama.md",
+      "stage": ["0", "1", "2", "3", "4", "5", "6", "7", "7d", "8", "batch", "review", "final", "high-stakes"],
+      "depends_on": ["core-craft"],
+      "scope": "vertical micro-drama"
+    },
+    {
+      "id": "platform-pack-template",
+      "version": "0.2.0",
+      "path": "modules/platforms/platform-pack-template.md",
+      "stage": ["0"],
+      "depends_on": [],
+      "scope": "dated official platform constraints and project analytics"
+    },
+    {
+      "id": "direction-visual-language",
+      "version": "0.2.0",
+      "path": "modules/direction/visual-language.md",
+      "stage": ["7d"],
+      "depends_on": ["core-craft"],
+      "scope": "camera, lens, composition, light"
+    },
+    {
+      "id": "direction-blocking-coverage",
+      "version": "0.2.0",
+      "path": "modules/direction/blocking-and-coverage.md",
+      "stage": ["7d"],
+      "depends_on": ["core-craft"],
+      "scope": "staging, axis, edit, sound, transitions"
+    },
+    {
+      "id": "direction-shot-breakdown",
+      "version": "0.2.0",
+      "path": "modules/direction/shot-breakdown.md",
+      "stage": ["7d"],
+      "depends_on": ["direction-visual-language", "direction-blocking-coverage"],
+      "scope": "scene-to-shot procedure and canonical shot fields"
+    },
+    {
+      "id": "production-ai-video",
+      "version": "0.2.0",
+      "path": "modules/production/ai-video.md",
+      "stage": ["7d"],
+      "depends_on": ["direction-shot-breakdown"],
+      "scope": "model-neutral generative video execution"
+    },
+    {
+      "id": "qa-script-doctor",
+      "version": "0.2.0",
+      "path": "modules/qa/script-doctor.md",
+      "stage": ["8", "review", "final", "high-stakes", "release"],
+      "depends_on": ["core-craft"],
+      "scope": "hard gates, scorecard, revision delta"
+    }
+  ],
+  "templates": [
+    "templates/project-state.md",
+    "templates/memory-checkpoint.md",
+    "templates/event-graph.md",
+    "templates/context-pack.md",
+    "templates/scene-card.md",
+    "templates/treatment.md",
+    "templates/beat-sheet.md",
+    "templates/fountain.md",
+    "templates/shot-list.md",
+    "templates/shot-list.csv",
+    "templates/generation-packet.md",
+    "templates/series-bible.md",
+    "templates/quality-scorecard.md",
+    "templates/run-manifest.json"
+  ]
+}

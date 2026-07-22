@@ -42,7 +42,8 @@ beat. Note the rough duration so the shot durations sum toward the scene runtime
 §4) and any sound bridge.
 
 **Step 6 — Emit the shot list.** Output to `templates/shot-list.md` (human) and/or
-`templates/shot-list.csv` (machine). Number shots `SC<scene>-<n>` (e.g. `SC04-03`).
+`templates/shot-list.csv` (machine). Use canonical IDs: standalone
+`SC004-SH003`; episodic `EP012-SC004-SH003`.
 
 **Step 7 — Self-check.** Run the coverage self-check (`blocking-and-coverage.md` §7)
 and confirm the shot durations roughly match the scene's runtime budget.
@@ -55,17 +56,18 @@ One row per shot. Keep it lean enough to fill, rich enough to shoot.
 
 | Field | 中文 | Notes |
 |---|---|---|
-| `shot_id` | 镜号 | `SC04-03` |
-| `size` | 景别 | EWS/WS/MS/MCU/CU/ECU/Insert |
-| `angle` | 角度 | eye / high / low / OTS / POV / Dutch / top |
-| `movement` | 运镜 | static / pan / tilt / dolly-in / track / crane / handheld / Steadicam / rack-focus |
+| `shot_id` | 镜号 | `SC004-SH003` or `EP012-SC004-SH003` |
+| `scene_id` | 场景 ID | `SC004` or `EP012-SC004` |
+| `size` | 景别 | EWS / WS / MLS / MS / MCU / CU / ECU / INSERT |
+| `angle` | 角度 | eye / high / low / OTS / POV / dutch / top |
+| `movement` | 运镜 | static / pan / tilt / dolly_in / dolly_out / track / crane / handheld / steadicam / rack_focus / whip_pan |
 | `lens_focus` | 焦距景深 | wide/normal/long; deep/shallow |
 | `subject_action` | 画面内容 | who does what, in the frame |
 | `dialogue_cue` | 台词点 | which line(s) this shot covers, or "—" |
 | `light_intent` | 光意图 | low-key / motivated lamp / backlit / etc. |
 | `sound_cue` | 声音 | diegetic / sound-bridge / silence / score |
-| `duration` | 时长 | ~seconds |
-| `transition_out` | 转场 | cut / match-cut / J-cut / dissolve … |
+| `duration_s` | 时长 | positive seconds, numeric |
+| `transition_out` | 转场 | cut / match_cut / J_cut / L_cut / dissolve / fade / smash_cut / whip_cut |
 | `notes` | 备注 | the turn, eyeline, continuity flags |
 
 ---
@@ -76,11 +78,11 @@ Scene (Fountain): two people at a table; she's about to tell him she's leaving.
 Beat: plot **loose** + emotion **heavy** (the §5 mismatch). POV: him.
 
 ```
-SC04-01 | WS    | eye        | static     | wide/deep    | The two at the table, room cold and large around them. | —                    | motivated window, low fill | room tone        | 4s  | cut     | establish geography; negative space = distance
-SC04-02 | OTS   | eye        | static     | normal/shall | Over his shoulder onto her; she stalls, turns the cup.  | "你今天…比平时安静。"   | window soft               | —                | 5s  | cut     | her screen-right, keep the line
-SC04-03 | MCU   | eye        | static     | normal/shall | Her, alone in frame, choosing the words.                | "我下周走。"            | window soft               | room tone        | 3s  | cut     | THE TURN sits in 04-04, not here
-SC04-04 | CU→ECU| eye        | slow dolly-in | long/shall | Him. The line lands. He doesn't move; his thumb stops on the glass. | (silent)        | key drops a stop          | SILENCE          | 6s  | L-cut   | push on the realization; reaction carries it
-SC04-05 | Insert| top        | static     | normal/deep  | His hand, still, on the glass. Hers withdraws from frame.| —                   | tabletop practical        | next scene audio under | 3s  | J-cut   | sound of next scene bleeds in over the held hand
+SC004-SH001 | SC004 | WS     | eye | static    | wide/deep     | The two at the table, room cold and large around them. | — | motivated window, low fill | room tone | 4 | cut | establish geography; negative space = distance
+SC004-SH002 | SC004 | MCU    | OTS | static    | normal/shallow | Over his shoulder onto her; she stalls, turns the cup. | "你今天…比平时安静。" | window soft | room tone | 5 | cut | her screen-right, keep the line
+SC004-SH003 | SC004 | MCU    | eye | static    | normal/shallow | Her, alone in frame, choosing the words. | "我下周走。" | window soft | room tone | 3 | cut | the turn sits in SH004, not here
+SC004-SH004 | SC004 | CU     | eye | dolly_in | long/shallow | Him. He does not move; his thumb stops on the glass. | (silent) | motivated window, low fill | room tone drops | 6 | L_cut | ends ECU; reaction carries the turn
+SC004-SH005 | SC004 | INSERT | top | static    | normal/deep | His still hand on the glass; hers leaves frame. | — | tabletop practical | next-scene audio under | 3 | J_cut | sound of next scene leads in
 ```
 
 Note how the turn (04-04) gets the only camera move and the silence, and the
@@ -93,10 +95,11 @@ listener — not the speaker — carries it. Total ≈ 21s, matching a short, he
 - **Feature / series:** full breakdown per scene; storyboard the set-pieces.
 - **Short / ultrashort:** breakdown is where the film is *made* — the visual idea
   often *is* the film; spend the most direction effort here.
-- **Vertical micro-drama:** do **not** produce a separate shot list. Fold a
-  lightweight per-clip note into the script (a size + a movement on the payoff is
-  enough); the format is built for speed and AI-generation pipelines. See
-  `modules/formats/vertical-microdrama.md`.
-- **AI-generation pipelines (2D / 3D / image-to-video):** the shot list doubles as a
-  generation brief — `size + angle + movement + light_intent + subject_action` maps
-  cleanly to prompt fields. Keep `subject_action` concrete and free of metaphor.
+- **Live-action vertical micro-drama:** normally keep a lightweight per-clip note
+  in the script (size + motivated movement on the payoff can be enough); emit a
+  separate CSV only when requested or required by the production handoff.
+- **AI-generated vertical / 2D / 3D / image-to-video:** normalize every embedded
+  clip note to the canonical 13-field shot row as production intent, even when the
+  CSV remains an internal intermediate. Then add `modules/production/ai-video.md`
+  and `templates/generation-packet.md` for asset locks, endpoint frames,
+  provenance, continuity, takes, and acceptance tests.

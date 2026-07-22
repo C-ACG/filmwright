@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/C-ACG/filmwright/schemas/shot-list.schema.json",
+  "title": "Filmwright Shot List Row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "shot_id",
+    "scene_id",
+    "size",
+    "angle",
+    "movement",
+    "lens_focus",
+    "subject_action",
+    "dialogue_cue",
+    "light_intent",
+    "sound_cue",
+    "duration_s",
+    "transition_out",
+    "notes"
+  ],
+  "properties": {
+    "shot_id": {
+      "type": "string",
+      "pattern": "^(EP[0-9]{3}-)?SC[0-9]{3}-SH[0-9]{3}$"
+    },
+    "scene_id": {
+      "type": "string",
+      "pattern": "^(EP[0-9]{3}-)?SC[0-9]{3}$"
+    },
+    "size": {
+      "enum": ["EWS", "WS", "MLS", "MS", "MCU", "CU", "ECU", "INSERT"]
+    },
+    "angle": {
+      "enum": ["eye", "high", "low", "OTS", "POV", "dutch", "top"]
+    },
+    "movement": {
+      "enum": [
+        "static",
+        "pan",
+        "tilt",
+        "dolly_in",
+        "dolly_out",
+        "track",
+        "crane",
+        "handheld",
+        "steadicam",
+        "rack_focus",
+        "whip_pan"
+      ]
+    },
+    "lens_focus": { "type": "string", "minLength": 1 },
+    "subject_action": { "type": "string", "minLength": 1 },
+    "dialogue_cue": { "type": "string" },
+    "light_intent": { "type": "string" },
+    "sound_cue": { "type": "string" },
+    "duration_s": { "type": "number", "exclusiveMinimum": 0 },
+    "transition_out": {
+      "enum": [
+        "cut",
+        "match_cut",
+        "J_cut",
+        "L_cut",
+        "dissolve",
+        "fade",
+        "smash_cut",
+        "whip_cut"
+      ]
+    },
+    "notes": { "type": "string" }
+  }
+}
