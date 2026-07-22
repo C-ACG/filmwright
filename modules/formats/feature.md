@@ -1,7 +1,8 @@
 # Format · Feature · 长片（75–120 分钟）
 
-> A journey, not an event. A marathon, not a sprint — pacing must breathe. Loads
-> `00` + `01` + `02`. Direction modules at stage 7d.
+> A journey, not an event. A marathon, not a sprint—pacing must breathe. Minimum
+> format dependency: `00`; task routes add development/structure only when needed.
+> Direction modules apply at Stage 7d.
 
 ## Feature vs short
 - A short is a sprint won on density; a feature needs rises and falls — quiet
@@ -54,4 +55,4 @@ change + retreat) · disconnected B-story (must mirror theme) · climax = "bigge
 fight" (must externalize the inner choice) · world dumped at once · plant too
 obvious · plant with no payoff · functionless supporting roles · monotone pacing
 · no runtime estimate → compressed climax · no breath between heavy scenes ·
-tracks always in sync (force some mismatch).
+tracks always in sync without a deliberate reason (consider a meaningful mismatch).

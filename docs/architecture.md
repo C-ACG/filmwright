@@ -1,85 +1,154 @@
 # Architecture · 设计说明
 
-Why Filmwright is shaped the way it is.
+Filmwright v0.2 is a portable creative core surrounded by explicit state, artifact,
+production, and evaluation contracts.
 
----
-
-## The core idea: two crafts, cleanly split
-
-A film set separates the writer from the director for a reason — they answer
-different questions:
-
-- **Writing** answers *what happens and what it means*: structure, character,
-  subtext, the words on the page.
-- **Direction** answers *how the camera, the staging, and the cut make the audience
-  feel it*: shot grammar, blocking, coverage, the breakdown.
-
-Most prompt-based "AI screenwriters" collapse these into one undifferentiated blob,
-which is why their output reads like a story summary rather than something a crew
-can shoot. Filmwright keeps them separate (`modules/` vs `modules/direction/`) and
-joins them at stage 7d, where a written scene becomes a shot list.
-
----
-
-## Progressive loading
-
-The orchestrator (`system/orchestrator.md`) is small and always loaded. Everything
-else loads on demand based on the routed format and the current pipeline stage. A
-concept-ultrashort job never loads the series module; a writing job that hasn't
-reached the breakdown never loads the direction modules. This keeps the working
-context lean on any model and makes each module independently legible and editable.
-
-```
-orchestrator (always)
-   ├── 00-core-craft        (every format)
-   ├── 01-development        (stages 1–4)
-   ├── 02-structure          (stage 5, cinematic formats)
-   ├── formats/<one>         (the routed format)
-   ├── direction/<as needed> (stage 7d)
-   └── qa/script-doctor      (stage 8 + silent self-check)
+```text
+Agent Entry
+  ├─ Repository Maintenance → version / schema / validator / eval / release
+  └─ Creative Runtime
+       Project Card + capability profile
+                 ↓
+       Orchestrator state machine
+                 ↓
+       active craft + format + task modules
+                 ↓
+       artifact + acceptance + State Delta
+                 ↓
+       canonical Project State root
+                 ↓
+       dependency-validated Event Graph / production subrecords
+                 ↓
+       Context Pack for the next unit
+                 ↓
+       QA hard gates + evidence scorecard
 ```
 
----
+## 1. Entry separation · 入口分离
 
-## Format-agnostic core, format-specific edges
+Opening the repository no longer automatically turns a coding/maintenance agent
+into a screenwriter. `system/entry-contract.md` chooses:
 
-The craft that does not change — dramatic action, Want/Need, show-don't-tell,
-dual-track pacing, runtime estimation, memory checkpoints, cross-format borrowing —
-lives once in `00-core-craft.md`. Each format module is thin: it states the format's
-traits, scales each pipeline stage up or down, and adds only what is genuinely
-specific (e.g. the micro-drama emotion engine, the series two-layer structure).
+- **Creative Runtime** for story artifacts;
+- **Repository Maintenance** for prompt/schema/docs/test/version work.
 
-This is what lets the same system span 90 seconds to a full season without
-duplicating method, and what makes "not limited to short-drama" structurally true
-rather than a slogan: micro-drama is **one format module among five**, not the
-center of gravity.
+`AGENTS.md` and `CLAUDE.md` are identical thin adapters. The canonical behavior
+lives once, preventing host-specific instruction drift.
 
----
+## 2. Small orchestrator, progressive modules · 小总控与按需模块
 
-## Portability
+The orchestrator owns priorities, trust boundaries, modes, routing, state, and
+output contracts. It does not repeat detailed craft. Runtime loading is:
 
-Filmwright assumes nothing beyond a capable LLM that reads Markdown and converses.
-No code, no runtime, no API. Deliverables are **Fountain** (screenplay), **CSV /
-Markdown tables** (shot lists, ledgers), and prose (treatments) — all
-version-control-friendly and importable by standard industry tools. The two agent
-entry files (`CLAUDE.md`, `AGENTS.md`) carry an identical contract so the system
-behaves the same on Claude, Codex, Cursor, or a bare chat window.
+```text
+00 core craft (always)
+├─ 01 development            stages 1–4
+├─ 02 structure              stages 5–6
+├─ 03 adaptation/research    source or factual tasks
+├─ formats/<active>          scale-specific behavior
+├─ direction/*               Stage 7d
+├─ production/ai-video       optional generative execution
+└─ qa/script-doctor          Review / Stage 8 / final high-stakes output
+```
 
----
+Five lite QA gates remain visible in the orchestrator. The full Script Doctor does
+not have to be loaded for every intermediate chat turn.
 
-## Lineage
+## 3. Modes and direct entry · 模式与直达
 
-Filmwright consolidates and re-engineers three earlier prompt systems into one
-agent-native, model-agnostic package:
+Guided, Sprint, Direct, and Review share the same dependencies but differ in pause
+semantics. The pipeline is a state machine:
 
-- a professional multi-format screenwriting engine (format routing; Want/Need,
-  Ghost/Lie/Flaw; Save the Cat / Story Circle / McKee; dual-track pacing; foreshadow
-  audits; memory checkpoints) — now the craft core and the four cinematic formats;
-- two iterations of a vertical-microdrama engine (emotion engine, payoff arsenal,
-  three locks, four ledgers, compliance rail, AI-production adaptation) — now folded
-  in as the micro-drama format module.
+- reuse approved upstream artifacts;
+- enter at the earliest necessary stage;
+- skip irrelevant ceremony, not load-bearing dependencies;
+- every unit ends with observable acceptance and State Delta.
 
-The new contribution is the **direction layer** — visual language, blocking,
-coverage, transitions, editing rhythm, and a scene→shot-list procedure — which the
-source systems deliberately left to a human director, and which makes the output
-shootable rather than merely written.
+This preserves human authorship without making a 60-second shot-list request replay
+premise development.
+
+## 4. One truth source · 单一真相源
+
+`templates/project-state.md` is canonical for locked decisions, source authority,
+entity state, knowledge, timeline, scene index, threads/setups, assumptions, and
+next action. Stable IDs survive wording changes.
+
+Detailed records and projections have different authority:
+
+- Event Graph and Production State/generation packets = normative subrecords,
+  registered with dependency IDs/revisions and a last-validated root revision;
+- checkpoint = portable handoff projection;
+- series bible = planning/continuity view;
+- micro-drama ledgers = task-focused views;
+- Context Pack = disposable subset for one next unit;
+- run manifest = reproducibility/provenance record.
+
+On conflict, current root locks/decisions win over a registered subrecord; a current
+subrecord wins over a projection. An unrelated root revision does not expire a
+subrecord, but a changed dependency makes it stale. Stale, unregistered, or
+dependency-mismatched subrecords cannot update canon or feed downstream work.
+
+Changing an upstream event or lock requires a State Delta and review of dependent
+scene cards/artifacts. A new draft does not silently become canon.
+
+## 5. Event graph and context compression · 事件图与上下文压缩
+
+Beat sheets describe rhythm; Event Graph nodes describe preconditions, action,
+outcome, knowledge changes, state delta, and causal/reveal/payoff edges. Before a
+scene, the system assembles only its dependency-complete context.
+
+This is more reliable than assuming a larger context window will remember every
+prop, secret, relationship, and deadline with equal priority.
+
+## 6. Writing, direction, production · 编、导、制
+
+- **Writing** owns event, meaning, character choice, scene text, and subtext.
+- **Direction** owns blocking, axis/coverage, shot grammar, sound, transition, and
+  edit rhythm.
+- **Production** converts approved shot intent into executable constraints.
+
+Live-action shot lists remain lean. Generative production gets a separate packet
+for asset/reference locks, endpoints, model adapters, takes, provenance, and
+acceptance tests. This prevents temporary model syntax from contaminating canon.
+
+## 7. Hard gates vs techniques · 硬闸门与技法分层
+
+Earlier versions overgeneralized useful techniques. v0.2 separates:
+
+- **Hard gates:** safety/rights, instruction boundary, brief, locked canon, source
+  fidelity, causality where the chosen form requires it, realizability, completeness.
+- **Strong defaults:** visual action, distinct voices, turns, runtime/continuity.
+- **Optional techniques:** Want/Need arc, dialogue, VO, dual-track mismatch,
+  conventional climax, camera-free screenplay page.
+
+QA marks irrelevant dimensions `N/A`. A character-free, zero-dialogue ultrashort is
+not broken merely because a feature-drama heuristic does not apply.
+
+## 8. Portability and capability adapters · 可移植与能力适配
+
+The core remains Markdown/Fountain/CSV and works without a code runtime. Hosts may
+add file persistence, web research, multimodal inspection, subagents, or an
+optional durable runner. The orchestrator uses only capabilities that actually
+exist and never claims a tool action that did not happen.
+
+Chat-only behavior is portable but manual. File/agentic/multimodal behavior is more
+capable, not identical.
+
+## 9. Machine contracts and evaluation · 机器契约与评测
+
+`filmwright.manifest.json` versions module paths/dependencies. JSON Schema defines
+the canonical shot row. The standard-library validator checks encoding/LF, local
+links, version/manifest consistency, adapter parity, schemas/CSV IDs/enums,
+Fountain/example regressions, runtime closure, and eval catalog shape.
+
+Behavioral evals assert observable constraints and use evidence rubrics rather than
+full creative golden snapshots. Compatibility is published only for exact
+model/host/suite runs.
+
+## 10. Design lineage · 设计来源
+
+The original strengths remain: separate writing/direction crafts, progressive
+loading, format-specific edges, Fountain/CSV portability, human gates, and memory
+checkpoints. v0.2 adds state-machine rigor, provenance, production continuity, and
+testable public contracts. External design references and license cautions are in
+[`references.md`](references.md).

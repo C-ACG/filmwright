@@ -1,140 +1,182 @@
-# Pipeline · 八步流水线契约
+# Filmwright Pipeline · 流水线契约
 
-> The stage-by-stage contract referenced by the orchestrator. Each stage states
-> its goal, inputs, output shape, and the gate that closes it. Format modules
-> override depth per stage; this file defines the default.
->
-> 每一步的目标、输入、产出形态与闸门。格式模块会按需缩放各步深度，此处为默认契约。
+> The full creative state machine for Filmwright v0.2. Format modules scale its
+> depth. Guided mode gates consequential decisions; Sprint and Direct modes may
+> traverse or enter stages without ceremonial pauses.
 
----
+## Shared stage contract · 通用步骤契约
 
-## Stage 1 — Break-in & core action · 破题与核心动作
+Every stage has five parts:
 
-**Goal.** Establish the story's core: the dramatic action (Goal + Conflict),
-and for longer forms the thematic argument.
+1. **Input** — approved upstream artifacts and current state revision.
+2. **Work** — the creative or analytical operation.
+3. **Artifact** — a named, reusable deliverable.
+4. **Acceptance** — observable checks, not “looks good”.
+5. **State Delta** — what became true, changed, locked, or remains unresolved.
 
-- A **dramatic action** is not "a person wants water" but "a dehydrated person in
-  a desert searches for water." Goal must be urgent; conflict must oppose it
-  directly. 详见 `modules/00-core-craft.md` §1。
-- If the user has no concept yet, run the **ideation toolkit** in
-  `modules/01-development.md` *through natural conversation* — never present the
-  methodology menu to the user.
+Do not regenerate approved upstream work merely to change phrasing. If a downstream
+discovery invalidates it, propose a specific revision and mark the superseded
+decision.
 
-**Output:** 3–5 candidate core actions, each as `protagonist / want / conflict /
-logline`.
-**Gate:** `[pass]` to proceed · `[revise]` · `[review]`.
+### Format override contract
 
----
+The active format and Project Card may replace a generic character-led technique
+with an explicit alternate progression contract. Mark non-applicable fields `N/A`
+and name what replaces them. This can override protagonist, Want/Need, conventional
+climax, dialogue, or goal/conflict defaults; it cannot waive safety/rights, the
+instruction boundary, brief, locked canon, source fidelity, realizability,
+continuity, or completeness.
 
-## Stage 2 — Synopsis draft · 梗概草稿
+## Stage 0 — Contract · 项目契约
 
-**Goal.** Give the user a feel for the whole story's trajectory and tone before
-going deeper.
+**Goal:** understand the requested outcome with minimum friction.
 
-**Output by format:**
-- Ultrashort: one-line concept + twist direction.
-- Short: one-paragraph synopsis (100–200 字).
-- Feature: one-page treatment (300–500 字) — see `templates/treatment.md`.
-- Series: season synopsis + one-line per episode.
+**Artifact:** Project Card:
 
-The tone of the synopsis must telegraph the tone of the film. **Revisable** in
-later stages.
-**Gate:** `[pass / revise]`.
+```text
+deliverable · format/runtime · audience/platform/rating · language · tone/reference
+canon/source · must-keep · must-avoid · production mode/budget/constraints · workflow mode
+```
 
----
+**Acceptance:** the deliverable and non-negotiables are clear; missing details are
+either blocking questions or explicit reversible assumptions. For multi-session or
+multi-artifact work, initialize `templates/project-state.md`.
 
-## Stage 3 — Character & arc · 人物深度与弧光
+## Stage 1 — Core action · 核心动作
 
-**Goal.** No paper dolls. Build internal tension.
+**Goal:** establish the governing engine. Character-led narrative uses protagonist
++ urgent goal + direct obstacle + stakes/pressure. Character-free/formal work uses
+an explicit observable progression rule from the active format contract.
 
-- Short: Want / Need / Arc + one contradiction.
-- Feature / Series: Ghost → Lie → Flaw → Want → Need → choice → new normal, plus
-  supporting-cast function tags (mirror / catalyst / theme / pace).
+**Artifact:** 3–5 genuinely different candidates when exploring; one approved
+logline and core action when converging.
 
-详见 `modules/00-core-craft.md` §2 与 `modules/01-development.md`。
-**Gate:** `[pass / revise / review]`.
+**Acceptance:** photographable/audible premise; the selected engine can generate
+progression; options differ in engine rather than surface decoration.
 
----
+## Stage 2 — Synopsis · 梗概
 
-## Stage 4 — Backstory & world · 前史与世界观
+**Goal:** let the user experience the whole trajectory and tone before detail.
 
-**Goal.** Honor "a film is a cross-section of life" — the world ran long before
-frame one.
+**Artifact by scale:** one line for ultrashort; 100–250 Chinese characters for a
+short; a one-page treatment for feature/season; episode line map for series.
 
-**Output:** era/context · protagonist backstory (esp. the Ghost) · relationship
-history · world rules (three-layer model where relevant) · **the cross-section
-choice** (why start *here*). Short forms keep this lean (backstory diffuses into
-dialogue, not flashback). 详见格式模块。
-**Gate:** `[pass / revise]`.
+**Acceptance:** beginning condition, progression, decisive choice/rupture/re-reading,
+and ending image are legible; prose carries the intended genre/tone; no beat-list
+disguised as a treatment.
 
----
+## Stage 3 — Character and relationship · 人物与关系
 
-## Stage 5 — Structure outline · 结构大纲
+**Goal:** build behavior-producing contradictions, not biographies for their own
+sake.
 
-**Goal.** Build the skeleton, including the **opening hook**.
+**Artifact:** Want / Need / contradiction / pressure behavior / voice fingerprint /
+arc; for long form add Ghost / Lie / Flaw, relationship matrix, and supporting-role
+functions.
 
-- Choose a methodology where the format calls for one (Save the Cat / Story Circle
-  / McKee / inner-beat + style variant — `modules/02-structure.md`).
-- The opening must be a piece of footage worth watching on its own — high-density
-  for genre, highly stylized for art film. Flag and confirm its quality.
-- Budget runtime per beat; annotate dual-track pacing (plot intensity + emotional
-  intensity); plan setups/payoffs.
+**Acceptance:** choices follow from character; principal voices remain identifiable
+without name labels; every speaking support role has a dramatic function.
 
-**Gate:** `[pass / revise / review]`.
+For character-free work, record `N/A — character-free` and validate the entities,
+objects, narration, or formal rules that carry continuity instead.
 
----
+## Stage 4 — Backstory, world, and canon · 前史、世界与正史
 
-## Stage 6 — Scene breakdown · 场景拆解
+**Goal:** know the world before choosing the cross-section shown on screen.
 
-**Goal.** Turn the outline into visual units. Each scene gets a micro dramatic
-action, an **estimated runtime**, and a **dual-track pacing tag** (plot 松/中/紧
-× emotion 轻/中/重).
+**Artifact:** era/context; relationship history; world rules and reveal schedule;
+cross-section choice; canon/source locks; adaptation ledger when applicable.
 
-Check: no 3+ consecutive scenes in the same pacing state; sum of scene runtimes
-≈ target runtime; at least one deliberate plot/emotion mismatch (the most
-flavorful beats). Trigger a memory checkpoint when the form is long.
-**Gate:** `[pass / revise / review]`.
+**Acceptance:** story starts at the most charged useful moment; rules create action;
+backstory has a delivery path other than exposition; source facts and inventions are
+distinguishable.
 
----
+## Stage 5 — Structure · 结构
 
-## Stage 7 — Scene writing · 场景写作
+**Goal:** design escalation or formal progression, reversals, pacing,
+setups/payoffs, and a decisive climax/rupture/re-reading appropriate to the format.
 
-**Goal.** Fill the flesh: visual writing + subtext, in **Fountain**
-(`templates/fountain.md`).
+**Artifact:** timed beat sheet with plot/emotion tracks, opening hook, setup/payoff
+IDs, subplot crossings, and ending image.
 
-- Show, don't tell. Dialogue is an iceberg. First appearance of a character gets
-  a one-to-two-line physical/identity sketch.
-- Plant setups naturally. Keep supporting voices distinct from the lead.
-- Trigger a checkpoint each sequence (feature) / mid-episode (series).
+**Acceptance:** each beat changes value, pressure, knowledge, or the declared
+pattern; runtime adds up; the decisive turn externalizes a choice or visibly changes
+the governing form; no three consecutive beats repeat the same pacing state without
+intent.
 
-**Gate:** `[pass / revise / review]`.
+## Stage 6 — Scene map · 场景地图
 
----
+**Goal:** turn beats into executable dramatic units.
 
-## Stage 7d — Shot breakdown · 分镜 / 运镜 / 调度 （direction layer）
+**Artifact:** one Scene Card per scene:
 
-**Goal.** Translate written scenes into a director's plan: blocking, coverage,
-shot sizes, angles, movement, transitions, and editing rhythm — exported as a
-**shot list** (`templates/shot-list.md` / `.csv`).
+```text
+scene_id · slugline · POV/alignment · goal+obstacle or formal unit job · turn · exit value
+runtime · plot/emotion tag · setup/payoff IDs · continuity in/out
+```
 
-This is where the **导演** craft lives. Load `modules/direction/*`:
-- `visual-language.md` — shot grammar and its motivation.
-- `blocking-and-coverage.md` — staging, the 180° line, coverage, transitions, cut rhythm.
-- `shot-breakdown.md` — the scene → shot-list procedure.
+**Acceptance:** every scene/unit causes, enables, reframes, or intentionally
+contrasts with the next under the declared form; no dead unit without a turn or
+indispensable setup function; total runtime is plausible; continuity deltas are
+explicit.
 
-Not every project requires a full breakdown; offer it, and produce it on request
-or when the deliverable is "shootable." For micro-drama, a lightweight per-clip
-shot note is folded into the script itself.
-**Gate:** `[pass / revise / review]`.
+Long work creates a checkpoint after the map and at sequence/episode boundaries.
 
----
+## Stage 7 — Screenplay · 场景写作
 
-## Stage 8 — Script doctor · 剧本医生
+**Goal:** realize the map as performance, image, sound, and subtext in Fountain or
+the required platform format.
 
-**Goal.** Diagnose and polish. Run the full self-check (`modules/qa/script-doctor.md`):
-logic holes, pacing (via runtime budget), on-the-nose dialogue, setup/payoff audit,
-supporting-cast audit, opening-hook quality, continuity (long forms).
+**Artifact:** screenplay pages with stable scene IDs kept in comments/headers or
+the companion scene map.
 
-**Output:** diagnosis report + concrete revision suggestions + final verdict
-across the four pillars (concept / character / structure / audiovisual).
-**Gate:** name the part to refine, or ship.
+**Acceptance:** only intentional subjective devices; distinct spoken voices;
+action is concrete; setup/payoff IDs land naturally; runtime remains within budget;
+the scripted scene produces the planned state delta.
+
+## Stage 7d — Direction · 导演拆解
+
+**Goal:** translate a finished scene into blocking, coverage, shot rhythm, sound,
+and transitions.
+
+**Artifact:** shot list. Live-action vertical micro-drama may keep the lightweight
+shot note embedded in the script. AI-generated vertical work must normalize that
+note to the canonical shot-row fields before adding
+`templates/generation-packet.md`; the normalized CSV may remain an intermediate
+unless the user requests it.
+
+**Acceptance:** each shot has a narrative job; geography/axis/eyelines are coherent;
+the scene turn receives deliberate emphasis; durations approximate the scene
+budget; continuity in/out is executable.
+
+## Stage 8 — QA and revision · 诊断与修订
+
+**Goal:** find defects, repair them, and prove the revision improved the artifact.
+
+**Artifact:** hard-gate result; evidence-based scorecard; prioritized fixes; revised
+artifact when authorized; before/after delta.
+
+**Acceptance:** no hard-gate failure; all required score dimensions meet the release
+threshold; fixes do not break locked canon or introduce new continuity errors.
+
+## Entry rules · 直达规则
+
+- **Existing draft review:** enter Stage 8, loading only the modules needed to judge
+  that artifact.
+- **Single-scene rewrite:** validate its Scene Card, then enter Stage 7.
+- **Shot list request:** derive missing Stage-6 fields, then enter Stage 7d.
+- **Continuation:** start from latest state + next Scene Card; do not recap unless
+  needed.
+- **Adaptation:** enter Stage 0/4 for source locks before changing plot.
+- **AI-video execution:** require approved shot intent and asset/continuity locks;
+  then use Stage 7d production packets.
+
+## Gate behavior · 闸门行为
+
+- **Guided:** offer `pass / revise / review` at decisions that materially constrain
+  later work. Do not pause after trivial formatting work.
+- **Sprint:** continue across requested stages, preserving an assumption log. Pause
+  only for a blocker, rights/safety issue, destructive action, or expensive render
+  gate.
+- **Direct:** return the bounded deliverable plus state delta.
+- **Review:** return diagnosis first; do not silently replace the user's work.

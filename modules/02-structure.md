@@ -106,19 +106,24 @@ tiny (a glance, an offhand line, a walk) but it sets off an internal earthquake.
 6 Aftershock          结局是开放的新问题，改变已发生但后果未至
 ```
 
-**Style variants** (skin over the same skeleton — adjust dwell time, info delivery,
-negative space; mix freely):
-- **Koreeda 是枝裕和（daily-flow）** — glacial setup, no clear inciting event; the
-  crack seeps in through accumulated routine; ends on an utterly ordinary action.
-- **Wong Kar-wai 王家卫（mood-flow）** — scenes connected by emotion not causality;
-  repeated visual motifs; VO/image mismatch as subtext; no traditional climax.
-- **Ozu 小津（still-life-flow）** — low fixed camera, "pillow shots" between scenes;
-  family as eternal motif; politeness as the largest subtext; endings of "acceptance."
-- **Linklater（dialogue-flow）** — almost all dialogue; real-talk rhythm (digress,
-  loop back); the climax is one *right* line; open endings.
-- **Bong Joon-ho 奉俊昊（genre-hybrid）** — strict commercial skeleton under genre
-  skin, with social critique and black comedy; halves can be different genres;
-  space as metaphor; props gain new meaning across the turn.
+**Composable flow profiles** (describe craft dimensions rather than imitating a
+named living creator; mix deliberately):
+
+- **Daily-observation flow 日常观察** — long dwell, the crack accumulates through
+  repeated routine, ending on an ordinary action newly charged with meaning.
+- **Mood-association flow 情绪联想** — scenes link through emotion/motif as well as
+  causality; intentional VO/image friction; an emotional turn may replace a
+  conventional climax.
+- **Still-life flow 静物空间** — fixed architectural frames and transitional space
+  images; social politeness carries conflict; acceptance rather than victory.
+- **Conversational drift 对话游移** — digression/return rhythm; apparent small talk
+  accumulates subtext; a precise line or silence can be the decisive turn.
+- **Genre-hybrid flow 类型混合** — a clear dramatic skeleton carries tonal/genre
+  shifts; space and props accumulate social meaning across the turn.
+
+When a user names a reference, extract the requested dimensions (tempo, framing,
+information release, dialogue density, tonal contrast) and build a distinct
+combination for this project; do not copy signature scenes or phrasing.
 
 ---
 

@@ -32,21 +32,25 @@ long before the first frame.
 
 ## §1. Dramatic action — the atomic unit · 戏剧动作
 
-**Definition:** `dramatic action = Goal + Conflict`. The goal must have urgency;
-the conflict must directly oppose it.
+For character-led narrative, the strong default is
+`dramatic action = Goal + Conflict`: the goal has urgency and the conflict directly
+opposes it. Each scene then carries a micro action (goal → obstacle → result).
 
-Every scene holds at least one **micro dramatic action** (goal → obstacle →
-result; result may be success, failure, or an unexpected turn). Micro actions
-aggregate up into sequence-level actions, and those into the film's core action.
+Character-free, essay, mood, associative, and formal works may instead declare a
+**progression engine** in the Project Card: pattern → variation → rupture; question
+→ evidence → re-reading; sensory/emotional accumulation; or another observable
+rule. Their units must change that selected engine, but do not invent a protagonist
+or conflict merely to satisfy this default.
 
-**Tests:** Is the goal reasonable and urgent? Is the goal–obstacle relationship
-strong enough to drive the story? Is the conflict the engine, not a decoration?
+**Tests:** What observable state, value, knowledge, pattern, or audience reading
+changes? For dramatic narrative, is the goal–obstacle relationship the engine
+rather than decoration? For an alternate form, is its declared progression legible?
 
 ---
 
 ## §2. Character — refuse paper dolls · 人物设计
 
-**Want vs Need.**
+**Want vs Need (character-led work).**
 - **Want (外在需求)** — the goal that drives action; the thing the character
   consciously pursues.
 - **Need (内在欲望)** — the soul-gap the character is unaware of; usually the root
@@ -63,7 +67,7 @@ one jump; long forms run several *false changes* before the real one.
 | Format | Depth |
 |---|---|
 | Ultrashort | functional archetype — no bio, no arc |
-| Short | Want / Need / Arc + one contradiction |
+| Short | Want / Need / Arc + one contradiction when character-led |
 | Feature | full bio + **Ghost** (前史创伤) + **Lie** (相信的谎言) + **Flaw** (性格缺陷) |
 | Series | feature depth, but the arc is budgeted across episodes |
 
@@ -179,11 +183,12 @@ rushes, drags, or under-builds the climax.
 
 ---
 
-## §7. Memory checkpoint · 记忆检查点（长内容防丢失）
+## §7. Project state & memory checkpoint · 项目状态与记忆检查点
 
 Long-form work overflows the context window; setups, states, and arcs get
-"forgotten," causing contradictions. A checkpoint is a structured snapshot — not a
-recap — recording only what later writing must know. Template:
+"forgotten," causing contradictions. The canonical record is the structured
+`templates/project-state.md`. A checkpoint is a compact handoff projection of that
+state — not a recap and never a competing source of truth. Template:
 `templates/memory-checkpoint.md`.
 
 **When to trigger:** short (after breakdown, once) · feature (each sequence) ·
@@ -218,3 +223,65 @@ Techniques are not siloed. Borrow the *thinking*, not the format.
 
 Use only when a concrete problem appears; it is most useful in the script-doctor
 stage, when something feels wrong but you can't name where.
+
+---
+
+## §9. Stable IDs & canon discipline · 稳定 ID 与正史纪律
+
+Long-form coherence improves when story entities have stable names that survive
+rewrites. Assign IDs once and reuse them:
+
+```text
+CHAR-001 character · LOC-001 location · PROP-001 prop · SETUP-001 plant/payoff
+SC001 scene · DEC-001 creative decision · SRC-001 source
+```
+
+The complete namespace, padding, episodic composition, artifact versions, and
+production take IDs are defined in [`docs/id-conventions.md`](../docs/id-conventions.md).
+Human-facing shorthand must expand to those canonical forms at a machine boundary.
+
+Separate information by authority:
+
+- **locked canon** — approved facts/pages; never change silently;
+- **working canon** — current draft truth, still revisable;
+- **proposal** — an option not yet adopted;
+- **inference** — derived from source or prior events, labeled as such;
+- **invention** — new connective material created by Filmwright.
+
+Every revision should identify what it supersedes and update affected scene,
+character, setup, information, prop, wardrobe, and location states. A late “better
+idea” is not automatically canon. Mark dependent artifacts stale until their
+contracts and State Deltas are reconciled with the new upstream truth.
+
+## §10. Scene contract · 场景最小契约
+
+Before writing a scene, know these fields:
+
+```text
+scene_id · POV · goal · obstacle · tactic · turn · exit value
+runtime · plot/emotion tag · setup/payoff IDs · continuity in/out
+```
+
+The **turn** is an observable change in value, power, knowledge, relationship, or
+available action. `continuity_out` must make the next scene possible or necessary.
+If a scene has no turn and no indispensable setup function, merge or cut it.
+
+After writing, compare the actual scene against the contract. Update the map when a
+good discovery changes the plan; do not leave plan and pages disagreeing.
+
+## §11. Diverge, then converge · 先发散，后收敛
+
+Strong models still default to the statistically familiar. For high-impact choices
+(premise, hook, midpoint, climax, ending, signature visual), generate a small set of
+**mechanically different** candidates before selecting one.
+
+- Vary causal engine, character cost, image, and audience knowledge—not just names
+  or decoration.
+- Reject the first option when it is merely competent, generic, or borrowed in
+  shape from a named reference.
+- Select against the Project Card and explain the choice in a short trade-off note.
+- Preserve the user's reference as a constraint on qualities, never imitate a living
+  creator's exact style or copy distinctive expression.
+
+Do this internally when the user asked for one answer. Show options only when their
+choice is useful. Do not expose private chain-of-thought.

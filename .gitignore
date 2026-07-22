@@ -13,3 +13,11 @@ dist/
 
 # Node (if anyone adds afterwriting/tooling later)
 node_modules/
+
+# Local credentials and generated evaluation reports
+.env
+.env.*
+evals/results/
+coverage/
+__pycache__/
+*.pyc

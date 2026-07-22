@@ -1,7 +1,8 @@
 # Format · Series · 剧集（多集）
 
 > N stories that compose one larger story. Two-layer structure, budgeted arc,
-> staged world-reveal, continuity management. Loads `00` + `01` + `02`.
+> staged world-reveal, continuity management. Minimum format dependency: `00`;
+> task routes add development/structure only when needed.
 
 ## Configure first · 先确认配置
 ```
@@ -20,24 +21,29 @@ world complexity (simple / layered / needs release schedule)
 When episode-good and season-arc conflict, **episode-good wins**.
 
 ## Series vs feature
-- Arc is **budgeted** across N episodes — early episodes can't change the character
-  too much or the back half has nowhere to go.
-- World **releases in phases** — surface rules early, operating logic mid, underlying
-  truth at finale. You must know the finale's reveal when writing episode 1.
-- N micro-stories, each independently good (unit), each laying brick for the season
-  arc (continuity).
+- With `season arc = yes`, arc is **budgeted** across N episodes—early episodes
+  cannot change the character so much that the back half has nowhere to go.
+- With layered world mystery, release surface rules early, operating logic mid, and
+  underlying truth at finale; know that finale reveal before writing episode 1.
+- With `season arc = no`, each episode stands alone. Keep only recurring entity,
+  setting, tone, and publicly-known-information continuity that the Project Card
+  actually requires; mark season reveal/arc/hidden-line fields `N/A`.
 
 ## Two-layer structure
 **Layer 1 — episode** (proportional, any runtime):
 ```
 Cold open / hook  — before the title; the key hook position. Ep1's open builds
-                    world + character + genre + season-seed at once.
+                    world + character + genre/editorial promise; add a season seed
+                    only when season arc = yes.
 Setup ~15%        — this episode's normal + inciting incident
-Development ~40%  — escalate (≥2 turns); B-plot threads; season-line seeds diffuse
-Climax ~25%       — episode's peak; a choice that expresses or challenges the Lie
-Resolution + act-out ~20% — this episode's new normal + a hook into the next
+Development ~40%  — escalate (≥2 turns); episode B-story; diffuse season-line seeds
+                    only when season arc = yes
+Climax ~25%       — episode's peak; decisive choice/turn; Lie expression is optional
+                    and applies only to the configured character/season arc
+Resolution + act-out ~20% — this episode's new normal; serial forms hook the next,
+                    pure anthology may close locally without a plot handoff
 ```
-**Layer 2 — season arc** (four phases by proportion):
+**Layer 2 — season arc** (only when `season arc = yes`; four phases by proportion):
 ```
 Setup (first 25%)     — surface rules; Want + Lie established; relationship net; seed
 Development (25–65%)  — escalate; operating logic revealed; false changes; weave
@@ -64,18 +70,21 @@ Each layer needs 1–2 episodes of planting; reveal through action, not narratio
 each reveal re-colors known information; max one new layer per episode.
 
 ## Continuity management (most important) · 连续性管理
-After every episode, update four tracking tables (templates in `series-bible.md`):
+After every episode, merge the State Delta into `templates/project-state.md`, then
+refresh four tracking views (templates in `series-bible.md`):
 A. character state · B. hidden-line progress · C. plant/payoff register · D.
 publicly-known-information list. Before writing a new episode, read the tables. On
 conflict, fix the new episode, not locked old ones. **Checkpoint each episode**
-(`00-core-craft.md` §7) — the single most important continuity safeguard.
+(`00-core-craft.md` §7). Project State—not a checkpoint or view—is the single
+source of truth.
 
-## Mandatory elements
-Foreshadow at four ranges (in-episode / short 1–3 ep / long 5+ ep / season-level
-paid at finale) · supporting cast with cross-episode micro-arcs that cross the
-lead's arc · 1–3 hidden lines with explicit start/reveal episodes · subplot weave
-(in-ep A/B + running subplot every 2–3 ep + season arc in fragments; ≤3 running
-at once; if season-arc beats hurt the episode's pace, cut the season-arc beats).
+## Conditional elements
+
+Every series requires episode-level setup/payoff and continuity appropriate to its
+configuration. Only `season arc = yes` requires multi-range foreshadowing,
+cross-episode micro-arcs, 1–3 hidden lines with explicit start/reveal episodes, and
+a season-level subplot weave. Pure anthology may mark all of those `N/A`; do not
+manufacture a finale payoff for a configuration that explicitly rejects one.
 
 ## Inter-episode pacing · 集间节奏
 No 3+ consecutive episodes of one tonal type (setup / light / tense / breath /
@@ -86,17 +95,19 @@ pivot that redirects the back half.
 
 ## Workflow — two phases
 **Phase 1 (once, may iterate): season plan + episode outlines.**
-- *Season plan:* config · season premise (logline) · one-page season synopsis ·
-  protagonist season arc + Lie · backstory & world (cross-section, three-layer,
-  release schedule) · arc-budget draft · hidden-line plan.
+- *Season plan:* config · season premise and editorial promise; when
+  `season arc = yes`, add one-page season synopsis, protagonist season arc + Lie,
+  layered-world release schedule, arc budget, and hidden-line plan; otherwise mark
+  these `N/A` and define episode independence plus recurring continuity locks.
 - *Episode outlines (the most critical step — pull the whole season through before
   writing any episode):* per episode, `logline / core dramatic action / tonal type
-  / timed inner structure / season connections (arc spend, hidden-line, world
-  release, plant, payoff, supporting dynamics) / inter-episode links`. Self-check the
-  whole map (hooks, four-phase arc, pacing wave, arc budget, layered release,
-  per-episode logline holds, breath episodes, ≤3 running subplots, natural act-outs,
-  foreshadow distribution, runtime sums).
-**Phase 2: per-episode eight-step workflow.** Stages 2 and 4 reduce to "confirm
+  / timed inner structure / episode setup-payoff / recurring continuity /
+  inter-episode links`. When `season arc = yes`, also include arc spend,
+  hidden-line, layered-world release, and season subplot connections. Self-check
+  every map for hooks, pacing wave, episode integrity, natural act-outs, and runtime
+  sums; check four-phase arc, arc budget, layered release, running subplots, and
+  season foreshadow only when that branch applies.
+**Phase 2: per-episode pipeline.** Stages 2 and 4 reduce to "confirm
 against the outline." Cold open per episode; continuity audit and checkpoint at
 stage 8.
 
